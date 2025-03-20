@@ -1,0 +1,72 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2321,         64]
+NotebookOptionsPosition[      1845,         47]
+NotebookOutlinePosition[      2240,         63]
+CellTagsIndexPosition[      2197,         60]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[StyleBox["   1. Any live cell with fewer than two live \
+neighbours dies, as if caused by under-population.\nbiguniv[[i, \
+j]]\[Equal]1&&  sumnear[i, j, biguniv] < 2, 0\n   2. Any live cell with two \
+or three live neighbours lives on to the next generation.\n   biguniv[[i, \
+j]]==1 && ( sumnear[i, j, biguniv]==2||sumnear[i, j, biguniv] \[Equal]3),1\n  \
+ 3. Any live cell with more than three live neighbours dies, as if by \
+overcrowding.\n   biguniv[[i, j]]==1 &&  sumnear[i, j, biguniv] > 3,0 ,\n   \
+4. Any dead cell with exactly three live neighbours becomes a live cell, as \
+if by reproduction.\n   biguniv[[i, j]]\[Equal]0 &&  sumnear[i, j, biguniv] \
+\[Equal]3,1,\n   \n   biguniv[[i, j]]\[Equal]0 && sumnear[i, j, biguniv] \
+\[NotEqual] 1, 0\[LineSeparator]",
+ FontSize->24]], "Chapter",
+ CellChangeTimes->{
+  3.9217494160399113`*^9, {3.921937019455421*^9, 3.921937076743677*^9}, {
+   3.921937464454536*^9, 
+   3.9219374671478853`*^9}},ExpressionUUID->"7da5ecf1-16ba-4977-96fc-\
+4df77b7c319c"],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{{3.921750591487707*^9, 3.921750619475125*^9}, {
+  3.921750668859736*^9, 3.921750732236773*^9}},
+ CellLabel->
+  "Out[311]=",ExpressionUUID->"a058760f-a663-4d3c-8f96-f556066c6091"]
+}, Open  ]]
+},
+WindowSize->{670, 668},
+WindowMargins->{{Automatic, 5}, {Automatic, 2}},
+FrontEndVersion->"14.0 for Mac OS X x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d1c237a3-9ff5-4cae-9d6a-3b66f1a0bbf8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1020, 16, 581, "Chapter",ExpressionUUID->"7da5ecf1-16ba-4977-96fc-4df77b7c319c"],
+Cell[1603, 40, 226, 4, 34, "Output",ExpressionUUID->"a058760f-a663-4d3c-8f96-f556066c6091"]
+}, Open  ]]
+}
+]
+*)
+
