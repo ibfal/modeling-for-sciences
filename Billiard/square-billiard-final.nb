@@ -1,0 +1,984 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     38834,        976]
+NotebookOptionsPosition[     37018,        941]
+NotebookOutlinePosition[     37445,        958]
+CellTagsIndexPosition[     37402,        955]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"reboundsup", "[", 
+     RowBox[{"startpt_", ",", " ", "m_"}], "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a", " ", "=", " ", 
+       RowBox[{"startpt", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "larger", " ", "if", " ", "statement", " ", "to", " ", "account", " ", 
+        "for", " ", "whether", " ", "it", " ", "is", " ", "going", " ", "up", 
+        " ", "or", " ", "down"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"n", "=", 
+       RowBox[{"Ceiling", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "a"}], ")"}], "/", "m"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<n: \>\"", ",", " ", "n"}], "]"}], ";", " ", 
+      RowBox[{"(*", "debugging", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"startpt", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "==", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "if", " ", "start", " ", "point", " ", "is", " ", "on", " ", "left", 
+          " ", "wall"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"pts", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "startpt", "}"}], ",", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               FractionBox[
+                RowBox[{
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{"-", "1"}], ")"}], 
+                  RowBox[{"k", "-", "1"}]], "+", "1"}], "2"], ",", 
+               RowBox[{"a", "+", " ", 
+                RowBox[{"k", "*", "m"}]}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"k", ",", "1", ",", 
+               RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}]}], "]"}]}], ",", " ",
+         "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"else", ":", " ", 
+          RowBox[{
+          "if", " ", "start", " ", "point", " ", "is", " ", "on", " ", 
+           "right", " ", "wall"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"pts", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "startpt", "}"}], ",", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               FractionBox[
+                RowBox[{
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{"-", "1"}], ")"}], "k"], "+", "1"}], "2"], ",", 
+               RowBox[{"a", "+", " ", 
+                RowBox[{"k", "*", "m"}]}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"k", ",", "1", ",", 
+               RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}]}], "]"}]}]}], "]"}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<pts: \>\"", ",", " ", "pts"}], "]"}], ";", " ", 
+      RowBox[{"(*", "debugging", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "change", " ", "the", " ", "direction", " ", "here", " ", "from", " ", 
+        "up", " ", "to", " ", "down", " ", "or", " ", "down", " ", "to", " ", 
+        "up"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"lastpt", " ", "=", " ", 
+       RowBox[{"Last", "[", "pts", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Last point = \>\"", ",", " ", "lastpt"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"lastpt", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], " ", "==", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Print", "[", "\"\<left wall\>\"", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ceilingpt", "=", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"1", "-", 
+               RowBox[{"lastpt", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "/", "m"}], ",", 
+            "1"}], "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"newstartpt", " ", "=", " ", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", 
+            RowBox[{"1", "-", 
+             RowBox[{"m", 
+              RowBox[{"(", 
+               RowBox[{"1", "-", 
+                RowBox[{"ceilingpt", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}]}], ")"}]}]}]}], "}"}]}]}], 
+        ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"ceilingpt", "=", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"lastpt", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "-", "1", "+", "m"}], ")"}], 
+             "/", "m"}], ",", "1"}], "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"newstartpt", " ", "=", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"1", "-", 
+             RowBox[{"m", 
+              RowBox[{"(", 
+               RowBox[{"ceilingpt", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}]}], "}"}]}]}]}], 
+       "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<ceiling point= \>\"", ",", " ", "ceilingpt"}], "]"}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<new start point= \>\"", ",", "newstartpt"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"pts", "=", 
+       RowBox[{"Join", "[", 
+        RowBox[{"pts", ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"ceilingpt", ",", " ", "newstartpt"}], "}"}]}], "]"}]}]}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"Return", "[", " ", "newstartpt", "]"}], ";"}], "*)"}], 
+     ")"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"reboundsdown", "[", 
+    RowBox[{"startpt_", ",", " ", "m_"}], "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"a", " ", "=", " ", 
+      RowBox[{"startpt", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "larger", " ", "if", " ", "statement", " ", "to", " ", "account", " ", 
+       "for", " ", "whether", " ", "it", " ", "is", " ", "going", " ", "up", 
+       " ", "or", " ", "down"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"n", "=", 
+      RowBox[{"Floor", "[", 
+       RowBox[{
+        RowBox[{"(", "a", ")"}], "/", "m"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<n: \>\"", ",", " ", "n"}], "]"}], ";", " ", 
+     RowBox[{"(*", "debugging", "*)"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"startpt", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "==", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "if", " ", "start", " ", "point", " ", "is", " ", "on", " ", "left", 
+         " ", "wall"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"pts", "=", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", "startpt", "}"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"-", "1"}], ")"}], 
+                 RowBox[{"k", "-", "1"}]], "+", "1"}], "2"], ",", 
+              RowBox[{"a", "-", " ", 
+               RowBox[{"k", "*", "m"}]}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "1", ",", "n"}], "}"}]}], "]"}]}], "]"}]}], 
+       ",", " ", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"else", ":", " ", 
+         RowBox[{
+         "if", " ", "start", " ", "point", " ", "is", " ", "on", " ", "right",
+           " ", "wall"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"pts", "=", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", "startpt", "}"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"-", "1"}], ")"}], "k"], "+", "1"}], "2"], ",", 
+              RowBox[{"a", "-", " ", 
+               RowBox[{"k", "*", "m"}]}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "1", ",", "n"}], "}"}]}], "]"}]}], "]"}]}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<pts: \>\"", ",", " ", "pts"}], "]"}], ";", " ", 
+     RowBox[{"(*", "debugging", "*)"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"lastpt", " ", "=", " ", 
+      RowBox[{"Last", "[", "pts", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<Last point = \>\"", ",", " ", "lastpt"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"lastpt", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], " ", "==", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Print", "[", "\"\<left wall\>\"", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"floorpt", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"m", " ", "*", " ", 
+               RowBox[{"lastpt", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], " ", "+", 
+              RowBox[{"lastpt", "[", 
+               RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "/", "m"}], ",", 
+           "0"}], "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"newstartpt", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", 
+           RowBox[{"m", 
+            RowBox[{"(", 
+             RowBox[{"1", "-", 
+              RowBox[{"floorpt", "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], ")"}]}]}], "}"}]}]}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Print", "[", "\"\<right wall\>\"", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"floorpt", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"m", "*", 
+               RowBox[{"lastpt", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], "-", 
+              RowBox[{"lastpt", "[", 
+               RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "/", "m"}], ",", 
+           "0"}], "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"newstartpt", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", 
+           RowBox[{"m", "*", 
+            RowBox[{"floorpt", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}]}], " ", "}"}]}]}]}], "]"}], ";",
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<floor point= \>\"", ",", " ", "floorpt"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<new start point= \>\"", ",", "newstartpt"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"pts", "=", 
+      RowBox[{"Join", "[", 
+       RowBox[{"pts", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"floorpt", ",", " ", "newstartpt"}], "}"}]}], "]"}]}]}], 
+    ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"reboundsdown", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", ".93"}], "}"}], ",", " ", ".18"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"reboundsup", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", ".15"}], "}"}], ",", " ", ".18"}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.920487032240604*^9, 3.920487112312395*^9}, {
+   3.920487185135292*^9, 3.920487186803741*^9}, {3.920487233840228*^9, 
+   3.920487271410863*^9}, {3.920487345517004*^9, 3.920487552745795*^9}, {
+   3.920487590427512*^9, 3.920487679421448*^9}, {3.920488521357695*^9, 
+   3.920488549390836*^9}, {3.920488793105887*^9, 3.920488831174275*^9}, 
+   3.92048889413457*^9, {3.920488943712754*^9, 3.9204889748546667`*^9}, {
+   3.920489025611121*^9, 3.92048904121593*^9}, {3.920489098446293*^9, 
+   3.920489105109879*^9}, 3.920490031652817*^9, {3.920490063004508*^9, 
+   3.920490166494337*^9}, {3.920490213177561*^9, 3.920490215256435*^9}, {
+   3.920490246760845*^9, 3.920490247540056*^9}, {3.920490459086718*^9, 
+   3.920490485654393*^9}, {3.920490518921857*^9, 3.920490580050945*^9}, {
+   3.920490658756695*^9, 3.9204906969767447`*^9}, {3.920490730385926*^9, 
+   3.920490743955652*^9}, {3.920490886471078*^9, 3.9204908956485357`*^9}, {
+   3.920491101546014*^9, 3.920491148167419*^9}, {3.920491858233403*^9, 
+   3.920491880554003*^9}, {3.920491967702362*^9, 3.920492006164817*^9}, {
+   3.920492325991247*^9, 3.920492326384912*^9}, {3.9204923606318617`*^9, 
+   3.920492363621993*^9}, {3.920492525381637*^9, 3.920492525873383*^9}, 
+   3.920492662602371*^9, {3.920492736737128*^9, 3.920492778742194*^9}, {
+   3.920492822972307*^9, 3.920492823552302*^9}, {3.920493016762537*^9, 
+   3.920493017504842*^9}, {3.920493096467368*^9, 3.920493109530394*^9}, {
+   3.920493161350215*^9, 3.920493222762929*^9}, {3.9204932645157003`*^9, 
+   3.920493264753598*^9}, {3.9204934065594597`*^9, 3.9204934551690617`*^9}, {
+   3.920493549030174*^9, 3.920493672416582*^9}, {3.920493703836934*^9, 
+   3.9204937180247936`*^9}, {3.920493752635572*^9, 3.920493756219019*^9}, {
+   3.920493804089057*^9, 3.920493808519763*^9}, {3.920494174011442*^9, 
+   3.920494204753224*^9}, 3.9204943351470003`*^9, 3.920494401225928*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"29516aed-3b9c-49ef-a011-fce6542e1cff"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"n: \"\>", "\[InvisibleSpace]", "5"}],
+  SequenceForm["n: ", 5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014465653*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"20e3e046-8e66-4808-b9e5-3ac25ec30651"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"pts: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.93`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.75`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.5700000000000001`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.39`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.21000000000000008`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.030000000000000138`"}], "}"}]}], "}"}]}],
+  SequenceForm[
+  "pts: ", {{0, 0.93}, {1, 0.75}, {0, 0.5700000000000001}, {1, 0.39}, {
+    0, 0.21000000000000008`}, {1, 0.030000000000000138`}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014467121*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"caf1f3f4-e750-4655-8819-1108e8a0e785"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Last point = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0.030000000000000138`"}], "}"}]}],
+  SequenceForm["Last point = ", {1, 0.030000000000000138`}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014468623*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"81e95e0d-0e93-4a88-b341-5814cb749a05"],
+
+Cell[BoxData["\<\"right wall\"\>"], "Print",
+ CellChangeTimes->{3.920555014469542*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"cf797194-316f-406b-b5c4-e8ac476cffc4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"floor point= \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0.8333333333333325`", ",", "0"}], "}"}]}],
+  SequenceForm["floor point= ", {0.8333333333333325, 0}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9205550144704447`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5ce361a3-fb7b-4dbd-8da5-d9f2e137b9db"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"new start point= \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0.14999999999999983`"}], "}"}]}],
+  SequenceForm["new start point= ", {0, 0.14999999999999983`}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9205550144713793`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b03e0003-c7cd-4d27-bef0-8bcfc48f88a3"]
+}, Open  ]],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   InterpretationBox[{
+     TagBox[{{}, {}, 
+       TagBox[
+        {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+          NCache[
+           Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[2], 
+         LineBox[{{0., 0.93}, {1., 0.75}, {0., 0.5700000000000001}, {1., 
+          0.39}, {0., 0.21000000000000008`}, {1., 0.030000000000000138`}, {
+          0.8333333333333325, 0.}, {0., 0.14999999999999983`}}]},
+        Annotation[#, "Charting`Private`Tag#1"]& ]},
+      {"WolframDynamicHighlight", <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>}], 
+     StyleBox[
+      DynamicBox[(Charting`HighlightActionBox["DynamicHighlight", {}, 
+        Slot["HighlightElements"], 
+        Slot["LayoutOptions"], 
+        Slot["Meta"], 
+        Charting`HighlightActionFunction["DynamicHighlight", {{{}, {}, 
+           Annotation[{
+             Hue[0.67, 0.6, 0.6], 
+             Directive[
+              PointSize[
+               Rational[7, 360]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]], 
+             
+             Line[{{0., 0.93}, {1., 0.75}, {0., 0.5700000000000001}, {1., 
+              0.39}, {0., 0.21000000000000008`}, {1., 
+              0.030000000000000138`}, {0.8333333333333325, 0.}, {0., 
+              0.14999999999999983`}}]}, "Charting`Private`Tag#1"]}}, <|
+         "HighlightElements" -> <|
+           "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+          "LayoutOptions" -> <|
+           "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 0.93}}, 
+            "Frame" -> {{False, False}, {False, False}}, 
+            "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+            "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+            GoldenRatio^(-1), "DefaultStyle" -> {
+              Directive[
+               PointSize[
+                Rational[7, 360]], 
+               RGBColor[0.368417, 0.506779, 0.709798], 
+               AbsoluteThickness[2]]}, 
+            "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+                Identity[
+                 Part[#, 1]], 
+                Identity[
+                 Part[#, 2]]}& ), 
+              "ScalingFunctions" -> {{Identity, Identity}, {
+                Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+            False|>, 
+          "Meta" -> <|
+           "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+            ListLinePlot, "GroupHighlight" -> False|>|>]]& )[<|
+        "HighlightElements" -> <|
+          "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+         "LayoutOptions" -> <|
+          "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 0.93}}, 
+           "Frame" -> {{False, False}, {False, False}}, 
+           "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+           "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+           GoldenRatio^(-1), "DefaultStyle" -> {
+             Directive[
+              PointSize[
+               Rational[7, 360]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]]}, 
+           "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+               Identity[
+                Part[#, 1]], 
+               Identity[
+                Part[#, 2]]}& ), 
+             "ScalingFunctions" -> {{Identity, Identity}, {
+               Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+           False|>, 
+         "Meta" -> <|
+          "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+           ListLinePlot, "GroupHighlight" -> False|>|>],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}],
+      Selectable->False]},
+    Annotation[{{{}, {}, 
+       Annotation[{
+         Hue[0.67, 0.6, 0.6], 
+         Directive[
+          PointSize[
+           Rational[7, 360]], 
+          RGBColor[0.368417, 0.506779, 0.709798], 
+          AbsoluteThickness[2]], 
+         Line[{{0., 0.93}, {1., 0.75}, {0., 0.5700000000000001}, {1., 0.39}, {
+          0., 0.21000000000000008`}, {1., 0.030000000000000138`}, {
+          0.8333333333333325, 0.}, {0., 0.14999999999999983`}}]}, 
+        "Charting`Private`Tag#1"]}}, <|
+     "HighlightElements" -> <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+      "LayoutOptions" -> <|
+       "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 0.93}}, 
+        "Frame" -> {{False, False}, {False, False}}, "AxesOrigin" -> {0, 0}, 
+        "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+        "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), "DefaultStyle" -> {
+          Directive[
+           PointSize[
+            Rational[7, 360]], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[2]]}, 
+        "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+            Identity[
+             Part[#, 1]], 
+            Identity[
+             Part[#, 2]]}& ), 
+          "ScalingFunctions" -> {{Identity, Identity}, {
+            Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> False|>, 
+      "Meta" -> <|
+       "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+        ListLinePlot, "GroupHighlight" -> False|>|>, 
+     "DynamicHighlight"]], {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "AxisPadding" -> Scaled[0.02], "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "DefaultPlotStyle" -> {
+      Directive[
+       RGBColor[0.368417, 0.506779, 0.709798], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.880722, 0.611041, 0.142051], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.560181, 0.691569, 0.194885], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.922526, 0.385626, 0.209179], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.528488, 0.470624, 0.701351], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.772079, 0.431554, 0.102387], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.363898, 0.618501, 0.782349], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[1, 0.75, 0], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.647624, 0.37816, 0.614037], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.571589, 0.586483, 0.], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.915, 0.3325, 0.2125], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+       AbsoluteThickness[2]]}, "DomainPadding" -> Scaled[0.02], 
+    "RangePadding" -> Scaled[0.05], "OptimizePlotMarkers" -> True, 
+    "IncludeHighlighting" -> "CurrentSet", "HighlightStyle" -> Automatic, 
+    "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1.}, {0, 0.93}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.920555014671568*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"ee69b58c-8af7-4f76-afb8-81385c87285f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"n: \"\>", "\[InvisibleSpace]", "5"}],
+  SequenceForm["n: ", 5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014791704*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"3b3b7fc5-9fe2-469b-aae9-551eccb26bef"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"pts: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.15`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.32999999999999996`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.51`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.6900000000000001`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0.87`"}], "}"}]}], "}"}]}],
+  SequenceForm[
+  "pts: ", {{0, 0.15}, {1, 0.32999999999999996`}, {0, 0.51}, {
+    1, 0.6900000000000001}, {0, 0.87}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014793311*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"43102f28-3dea-4ace-984c-5e4738c5dd1b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Last point = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0.87`"}], "}"}]}],
+  SequenceForm["Last point = ", {0, 0.87}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.92055501479545*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b78ac974-a68e-4532-add9-06a594ac80c5"],
+
+Cell[BoxData["\<\"left wall\"\>"], "Print",
+ CellChangeTimes->{3.920555014796424*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"cfcb3d8c-95cf-454a-b4d5-f2ab4f6f2db4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"ceiling point= \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0.7222222222222222`", ",", "1"}], "}"}]}],
+  SequenceForm["ceiling point= ", {0.7222222222222222, 1}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.920555014797401*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"73772f09-78ea-49f6-ab66-def5b8542377"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"new start point= \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0.95`"}], "}"}]}],
+  SequenceForm["new start point= ", {1, 0.95}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9205550147984133`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"855ae05e-e6d8-4752-b811-768ad62163e3"]
+}, Open  ]],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   InterpretationBox[{
+     TagBox[{{}, {}, 
+       TagBox[
+        {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+          NCache[
+           Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[2], 
+         LineBox[{{0., 0.15}, {1., 0.32999999999999996`}, {0., 0.51}, {1., 
+          0.6900000000000001}, {0., 0.87}, {0.7222222222222222, 1.}, {1., 
+          0.95}}]},
+        Annotation[#, "Charting`Private`Tag#1"]& ]},
+      {"WolframDynamicHighlight", <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>}], 
+     StyleBox[
+      DynamicBox[(Charting`HighlightActionBox["DynamicHighlight", {}, 
+        Slot["HighlightElements"], 
+        Slot["LayoutOptions"], 
+        Slot["Meta"], 
+        Charting`HighlightActionFunction["DynamicHighlight", {{{}, {}, 
+           Annotation[{
+             Hue[0.67, 0.6, 0.6], 
+             Directive[
+              PointSize[
+               Rational[7, 360]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]], 
+             
+             Line[{{0., 0.15}, {1., 0.32999999999999996`}, {0., 0.51}, {1., 
+              0.6900000000000001}, {0., 0.87}, {0.7222222222222222, 1.}, {1., 
+              0.95}}]}, "Charting`Private`Tag#1"]}}, <|
+         "HighlightElements" -> <|
+           "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+          "LayoutOptions" -> <|
+           "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 1.}}, 
+            "Frame" -> {{False, False}, {False, False}}, 
+            "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+            "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+            GoldenRatio^(-1), "DefaultStyle" -> {
+              Directive[
+               PointSize[
+                Rational[7, 360]], 
+               RGBColor[0.368417, 0.506779, 0.709798], 
+               AbsoluteThickness[2]]}, 
+            "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+                Identity[
+                 Part[#, 1]], 
+                Identity[
+                 Part[#, 2]]}& ), 
+              "ScalingFunctions" -> {{Identity, Identity}, {
+                Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+            False|>, 
+          "Meta" -> <|
+           "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+            ListLinePlot, "GroupHighlight" -> False|>|>]]& )[<|
+        "HighlightElements" -> <|
+          "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+         "LayoutOptions" -> <|
+          "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 1.}}, 
+           "Frame" -> {{False, False}, {False, False}}, 
+           "AxesOrigin" -> {0, 0}, "ImageSize" -> {360, 360/GoldenRatio}, 
+           "Axes" -> {True, True}, "LabelStyle" -> {}, "AspectRatio" -> 
+           GoldenRatio^(-1), "DefaultStyle" -> {
+             Directive[
+              PointSize[
+               Rational[7, 360]], 
+              RGBColor[0.368417, 0.506779, 0.709798], 
+              AbsoluteThickness[2]]}, 
+           "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+               Identity[
+                Part[#, 1]], 
+               Identity[
+                Part[#, 2]]}& ), 
+             "ScalingFunctions" -> {{Identity, Identity}, {
+               Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> 
+           False|>, 
+         "Meta" -> <|
+          "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+           ListLinePlot, "GroupHighlight" -> False|>|>],
+       ImageSizeCache->{{4.503599627370496*^15, -4.503599627370496*^15}, {
+        4.503599627370496*^15, -4.503599627370496*^15}}],
+      Selectable->False]},
+    Annotation[{{{}, {}, 
+       Annotation[{
+         Hue[0.67, 0.6, 0.6], 
+         Directive[
+          PointSize[
+           Rational[7, 360]], 
+          RGBColor[0.368417, 0.506779, 0.709798], 
+          AbsoluteThickness[2]], 
+         Line[{{0., 0.15}, {1., 0.32999999999999996`}, {0., 0.51}, {1., 
+          0.6900000000000001}, {0., 0.87}, {0.7222222222222222, 1.}, {1., 
+          0.95}}]}, "Charting`Private`Tag#1"]}}, <|
+     "HighlightElements" -> <|
+       "Label" -> {"XYLabel"}, "Ball" -> {"InterpolatedBall"}|>, 
+      "LayoutOptions" -> <|
+       "PanelPlotLayout" -> <||>, "PlotRange" -> {{0, 1.}, {0, 1.}}, 
+        "Frame" -> {{False, False}, {False, False}}, "AxesOrigin" -> {0, 0}, 
+        "ImageSize" -> {360, 360/GoldenRatio}, "Axes" -> {True, True}, 
+        "LabelStyle" -> {}, "AspectRatio" -> GoldenRatio^(-1), "DefaultStyle" -> {
+          Directive[
+           PointSize[
+            Rational[7, 360]], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[2]]}, 
+        "HighlightLabelingFunctions" -> <|"CoordinatesToolOptions" -> ({
+            Identity[
+             Part[#, 1]], 
+            Identity[
+             Part[#, 2]]}& ), 
+          "ScalingFunctions" -> {{Identity, Identity}, {
+            Identity, Identity}}|>, "Primitives" -> {}, "GCFlag" -> False|>, 
+      "Meta" -> <|
+       "DefaultHighlight" -> {"Dynamic", None}, "Index" -> {}, "Function" -> 
+        ListLinePlot, "GroupHighlight" -> False|>|>, 
+     "DynamicHighlight"]], {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "AxisPadding" -> Scaled[0.02], "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "DefaultPlotStyle" -> {
+      Directive[
+       RGBColor[0.368417, 0.506779, 0.709798], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.880722, 0.611041, 0.142051], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.560181, 0.691569, 0.194885], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.922526, 0.385626, 0.209179], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.528488, 0.470624, 0.701351], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.772079, 0.431554, 0.102387], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.363898, 0.618501, 0.782349], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[1, 0.75, 0], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.647624, 0.37816, 0.614037], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.571589, 0.586483, 0.], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.915, 0.3325, 0.2125], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+       AbsoluteThickness[2]]}, "DomainPadding" -> Scaled[0.02], 
+    "RangePadding" -> Scaled[0.05], "OptimizePlotMarkers" -> True, 
+    "IncludeHighlighting" -> "CurrentSet", "HighlightStyle" -> Automatic, 
+    "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1.}, {0, 1.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.9205550148299093`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"8d2fd29b-18c9-4a22-bbc1-68f278ef258b"]
+}, Open  ]]
+},
+WindowSize->{1440, 996},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"14.0 for Mac OS X x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"59988026-2546-47ca-bf45-76fb412e6ce3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 14266, 344, 1827, "Input",ExpressionUUID->"29516aed-3b9c-49ef-a011-fce6542e1cff"],
+Cell[CellGroupData[{
+Cell[14871, 370, 288, 8, 29, "Print",ExpressionUUID->"20e3e046-8e66-4808-b9e5-3ac25ec30651"],
+Cell[15162, 380, 888, 24, 29, "Print",ExpressionUUID->"caf1f3f4-e750-4655-8819-1108e8a0e785"],
+Cell[16053, 406, 402, 10, 29, "Print",ExpressionUUID->"81e95e0d-0e93-4a88-b341-5814cb749a05"],
+Cell[16458, 418, 190, 4, 29, "Print",ExpressionUUID->"cf797194-316f-406b-b5c4-e8ac476cffc4"],
+Cell[16651, 424, 399, 10, 29, "Print",ExpressionUUID->"5ce361a3-fb7b-4dbd-8da5-d9f2e137b9db"],
+Cell[17053, 436, 410, 10, 29, "Print",ExpressionUUID->"b03e0003-c7cd-4d27-bef0-8bcfc48f88a3"]
+}, Open  ]],
+Cell[17478, 449, 8616, 205, 306, "Output",ExpressionUUID->"ee69b58c-8af7-4f76-afb8-81385c87285f"],
+Cell[CellGroupData[{
+Cell[26119, 658, 288, 8, 29, "Print",ExpressionUUID->"3b3b7fc5-9fe2-469b-aae9-551eccb26bef"],
+Cell[26410, 668, 777, 22, 29, "Print",ExpressionUUID->"43102f28-3dea-4ace-984c-5e4738c5dd1b"],
+Cell[27190, 692, 368, 10, 29, "Print",ExpressionUUID->"b78ac974-a68e-4532-add9-06a594ac80c5"],
+Cell[27561, 704, 189, 4, 29, "Print",ExpressionUUID->"cfcb3d8c-95cf-454a-b4d5-f2ab4f6f2db4"],
+Cell[27753, 710, 401, 10, 29, "Print",ExpressionUUID->"73772f09-78ea-49f6-ab66-def5b8542377"],
+Cell[28157, 722, 379, 10, 29, "Print",ExpressionUUID->"855ae05e-e6d8-4752-b811-768ad62163e3"]
+}, Open  ]],
+Cell[28551, 735, 8451, 203, 306, "Output",ExpressionUUID->"8d2fd29b-18c9-4a22-bbc1-68f278ef258b"]
+}, Open  ]]
+}
+]
+*)
+

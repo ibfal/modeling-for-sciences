@@ -1,0 +1,52 @@
+#n = the number of pts before 10
+#n = (10/ 2(m)) %10 ceiling (need it to round up) 
+#dist = manipulated vari
+ppts = {{0,0}}
+
+while i < dist :
+while i =< n : 
+    do  {10,  m (10 - ppts[[i]][[1]]) + ppts[[i]][[2]] } if i is odd
+    do  {0,  -m (0 - ppts[[i]][[1]]) + ppts[[i]][[2]] } if i is even 
+
+if i = n+1 
+    #this is the next point from the corner to the wall. 
+    if ppts[[i-1]][[1]]= 0 & ppts[[i-1]][[2]] == 10 :
+        {((10 + -m ppts[[i]][[1]] - ppts[[i]][[2]] ) /(-m)), 10 }
+        #then we need to go - + - + down
+        #create a flag variable to say that the sign should stay? like j = 1 youre periodic? so keep sign?
+    if ppts[[i-1]][[1]] = 10 & ppts[[i-1]][[2]] = 10 :  
+        {((0 + m ppts[[i]][[1]] - ppts[[i]][[2]] ) /(m)), 0 }
+        #then we need to go + - + - down
+        #create a flag variable to say that the sign should stay? like j = 2 youre periodic? so keep sign?
+
+#this is the pt from wall to top 
+    else if i is odd: 
+        # add this pt:
+        {(10 + m pts[[i]][[1]] - pts[[i]][[2]] ) /(m), 10   }
+    else if i is even:
+        #reassign this pt:
+        {(10 + -m pts[[i]][[1]] - pts[[i]][[2]] ) /(-m), 10 }
+
+while n+1 < i <= 2 n : #start the descend.
+    if i even or j = 2:  
+    do  {0,  -m (0 - ppts[[i]][[1]]) + ppts[[i]][[2]] }   if even 
+    do  {10,  m (10 - ppts[[i]][[1]]) + ppts[[i]][[2]] } if odd 
+
+    if i odd or j = 1 : 
+    do  {10,  m (10 - ppts[[i]][[1]]) + ppts[[i]][[2]] } if odd
+    do  {0,  -m (0 - ppts[[i]][[1]]) + ppts[[i]][[2]] }  if even
+
+if i = 2 n + 1: #except this needs to be six and its 5 for the 3/7 example
+        if i is even
+        {( 0 - pts[[i]][[2]] + -m  pts[[i]][[1]])/(-m), 0}
+
+        if i is odd 
+        {( 0 - pts[[i]][[2]] + m  pts[[i]][[1]])/(m), 0}
+    # cases for the bottom when in the corners would just restart from the begining of the loop. 
+
+then we need to repeat until i is no longer less than dist. but the N number will have to change. 
+change the value of n to 3n 4n etc until its equal to dist
+
+
+
+for m< 1 and m> 1 switching x andy for floor to ceiling rebounds because of the slope. 
